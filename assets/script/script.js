@@ -1,11 +1,11 @@
 
 var quizBody = document.querySelector("#questions")
 var quiz
-
+var alerts = document.querySelector("#passFail");
 var userScore
 var timeleft 
 var play = document.querySelector("#play")
-var countdown = 10
+var countdown = 60
 var userGuess = document.querySelector(".answers")
 
 var question = document.querySelector("#question");
@@ -35,7 +35,6 @@ var trivia = [
         question: "Who is the captain of the Enterprise?",
         choices: ["Picard", "Riker", "Archer", "Barclay"],
         answer: "Picard",
-            
     },
     {
         question: "Lt. Worf is of what race?",
@@ -62,7 +61,7 @@ console.log(trivia[1].question);
 
 function displayQuestions () {
     var question = trivia[questionIndex];
-    question.textContent = trivia[1].question;
+    question.innerhtml = question.question;
     btn1.textContent = question.choices[0];
     btn2.textContent = question.choices[1];
     btn3.textContent = question.choices[2];
@@ -80,10 +79,12 @@ function checkAnswer(event)  {
     console.log(event.target);
     var userAnswer = event.target.innerText;
     if (userAnswer === trivia[questionIndex].answer){
-        alert("Correct");
+        alerts.textContent = "Correct!"
         playerScore++
     }else {
-        alert("Wrong!")
+        alerts.textContent = "Wrong!";
+        countdown-5;
+
     }
     questionIndex++;
     
@@ -91,7 +92,7 @@ function checkAnswer(event)  {
         displayQuestions();
 
     }else {
-        alert("End Game")
+        alerts.textContent = "IT'S GAME OVER, MAN."
     }
 }
 play.addEventListener("click", startGame)
