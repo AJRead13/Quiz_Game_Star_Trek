@@ -3,12 +3,13 @@ var quizBody = document.querySelector("#questions")
 var quiz
 var alerts = document.querySelector("#passFail");
 var userScore
-var timeleft 
+var timeEl = document.querySelector("#scores");
 var play = document.querySelector("#play")
-var countdown = 60
+
 var userGuess = document.querySelector(".answers")
 
-var question = document.querySelector("#question");
+
+var questionText = document.querySelector("#question");
 var btn1 = document.querySelector("#btn1");
 var btn2 = document.querySelector("#btn2");
 var btn3 = document.querySelector("#btn3");
@@ -16,18 +17,6 @@ var btn4 = document.querySelector("#btn4");
 
 var questionIndex = 0
 var playerScore = 0
-
-// .style.display ="none";
-// .dataset.state = "hidden";
-// .style.display = "block";
-
-
-// function startGame(){
-//     play.addEventListener("click", 
-//     )
-// }
-
-
 
 
 var trivia = [
@@ -61,12 +50,11 @@ console.log(trivia[1].question);
 
 function displayQuestions () {
     var question = trivia[questionIndex];
-    question.innerhtml = question.question;
+    questionText.textContent = question.question;
     btn1.textContent = question.choices[0];
     btn2.textContent = question.choices[1];
     btn3.textContent = question.choices[2];
     btn4.textContent = question.choices[3];
-    //quizbody.style.display = "block";
 
 
 }
@@ -102,38 +90,20 @@ play.addEventListener("click", startGame)
 function startGame()  {
     play.style.display = "none";
 
-   displayQuestions()
-
-    
-
-
+   displayQuestions();
+   //setTime();
 
 }
-
+var countdown = 60
 
 function setTime() {
     var countdown = setInterval(function() {
       secondsLeft--;
-      gameTime.textContent = secondsLeft;
+      timeEl.textContent = "Your score " + secondsLeft;
       if(secondsLeft === 0) {
         clearInterval(countdown);
-        sendMessage("Game-Over");
       }
     }, 1000);
   }
 
-
-// var timeInterval = setInterval(function () {
-//     if (timeLeft > 1) {
-//       timerEl.textContent = timeLeft + ' seconds remaining';
-//       timeLeft--;
-//     } else if (timeLeft === 1) {
-//       timerEl.textContent = timeLeft + ' second remaining';
-//       timeLeft--;
-//     } else {
-//       timerEl.textContent = '';
-//       clearInterval(timeInterval);
-//       displayMessage();
-//     }
-//   }, 1000);
-// }
+console.log(timeEl.textContent);
