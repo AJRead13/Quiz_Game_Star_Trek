@@ -69,7 +69,7 @@ function checkAnswer(event) {
         alerts.textContent = "Correct!"
     } else {
         alerts.textContent = "Wrong!";
-        secondsLeft - 10;
+        secondsLeft = secondsLeft-10;
     }
     questionIndex++;
 
