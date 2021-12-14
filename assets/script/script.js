@@ -1,16 +1,16 @@
 
-var quizBody = document.querySelector("#questions")
+var quizBody = document.querySelector("#questions");
 var quiz
 var alerts = document.querySelector("#passFail");
 var userScore
 var timeEl = document.querySelector("#scores");
-var play = document.querySelector("#play")
-
-var userGuess = document.querySelector(".answers")
-var gameOver = document.querySelector("#gameOver")
-
-var playAgain = document.querySelector("#playAgain")
-
+var play = document.querySelector("#play");
+var scoreCard = document.querySelector("#playerScore");
+var player = document.querySelector("#player");
+var score = document.querySelector("#score");
+var userGuess = document.querySelector(".answers");
+var gameOver = document.querySelector("#gameOver");
+var playAgain = document.querySelector("#playAgain");
 var questionText = document.querySelector("#question");
 var btn1 = document.querySelector("#btn1");
 var btn2 = document.querySelector("#btn2");
@@ -69,7 +69,7 @@ function checkAnswer(event) {
         alerts.textContent = "Correct!"
     } else {
         alerts.textContent = "Wrong!";
-        secondsLeft = secondsLeft-10;
+        secondsLeft = secondsLeft - 10;
     }
     questionIndex++;
 
@@ -80,9 +80,17 @@ function checkAnswer(event) {
     else {
         gameOver.textContent = "IT'S GAME OVER, MAN.";
         clearInterval(timerInterval);
-    }
+        var userInitials = prompt("Please Enter your Initials.")
+    } return userInitials, secondsLeft;
+
+
 }
 play.addEventListener("click", startGame)
+
+function replay() {
+    play.style.display = "none";
+
+}
 
 playAgain.style.display = "none";
 
@@ -103,21 +111,19 @@ function setTime() {
             //alerts.textContent = "IT'S GAME OVER, MAN!"
         }
     }, 1000);
-    highScores.push(secondsLeft);
+    //highScores.push(secondsLeft);
 }
 
 playAgain.addEventListener("click", startGame)
 
-
-var score = 0;
-var highscore = localStorage.getItem("highscore");
-function addScore() {
-if (highscore !== null) {
-    if (score > highscore) {
-        localStorage.setItem("highscore", score);
-    }
-}
-else {
-    localStorage.setItem("highscore", score);
-}
-}
+// var highscore = localStorage.getItem("initials");
+// function addScore() {
+// if (highscore !== null) {
+//     if (score > highscore) {
+//         localStorage.setItem("initials", score);
+//     }
+// }
+// else {
+//     localStorage.setItem("initials", score);
+// }
+// }
