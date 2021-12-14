@@ -1,17 +1,21 @@
 
 var quizBody = document.querySelector("#questions")
 var quiz
-var questionOne
-var questionTwo
-var questionThree
-var questionFour
-var questionFive
+
 var userScore
 var timeleft 
 var play = document.querySelector("#play")
 var countdown = 10
+var userGuess = document.querySelector(".answers")
 
-console.log("Hellow");
+var question = document.querySelector("#question");
+var btn1 = document.querySelector("#btn1");
+var btn2 = document.querySelector("#btn2");
+var btn3 = document.querySelector("#btn3");
+var btn4 = document.querySelector("#btn4");
+
+var questionIndex = 0
+var playerScore = 0
 
 // .style.display ="none";
 // .dataset.state = "hidden";
@@ -29,53 +33,76 @@ console.log("Hellow");
 var trivia = [
     {
         question: "Who is the captain of the Enterprise?",
-            a: {name: "Picard", value: true},
-            b: {name: "Riker", value: false},
-            c: {name: "Archer", value: false},
-            d: {name: "Barclay", value: false},
+        choices: ["Picard", "Riker", "Archer", "Barclay"],
+        answer: "Picard",
+            
     },
     {
         question: "Lt. Worf is of what race?",
-            a: {name: "Borg", value: false},
-            b: {name: "Vulkan", value: false},
-            c: {name:"Klingon", value: true},
-            d: {name: "Romulan", value: false},
+        choices: ["Borg", "Vulkan", "Klingon", "Romulan"],
+        answer: "Klingon",
     },
     {
         question: "The Enterprise NCC-1701D is what class of starship?",
-            a: {name: "Voyager", value: false},
-            b: {name: "Galaxy", value: true},
-            c: {name: "Constellation", value: false},
-            d: {name: "Intrepid", value: true},
+        choices: ["Voyager", "Galaxy", "Constellation", "Intrepid"],
+        answer: "Galaxy",
     },
     {
         question: "Earth is located in what quadrant?",
-            a: {name: "Alpha", value: true},
-            b: {name:"Beta": false},
-            c: {"Gamma": false},
-            d: {"Delta": false},
+        choices: ["Alpha", "Beta", "Gamma", "Delta"],
+        answer: "Alpha",
     },
     {
         question: "Commander Spock was played by what actor?",
-            a: {"William Shatner": false},
-            b: {"Leonard Nemoy": true},
-            c: {"Michael Dorn": false},
-            d: {"Patrick Stewart": false},
+        choices: ["William Shatner", "Leonard Nemoy", "Michael Dorn", "Patrick Stewart"],
+        answer: "Leonard Nemoy",
     }
 ];
-console.log(trivia[1].c.value);
-
-
+console.log(trivia[1].question);
 
 function displayQuestions () {
-    var quizBody = trivia;
-    quizbody.style.display("block")
+    var question = trivia[questionIndex];
+    question.textContent = trivia[1].question;
+    btn1.textContent = question.choices[0];
+    btn2.textContent = question.choices[1];
+    btn3.textContent = question.choices[2];
+    btn4.textContent = question.choices[3];
+    //quizbody.style.display = "block";
+
 
 }
+btn1.addEventListener("click", checkAnswer);
+btn2.addEventListener("click", checkAnswer);
+btn3.addEventListener("click", checkAnswer);
+btn4.addEventListener("click", checkAnswer);
+
+function checkAnswer(event)  {
+    console.log(event.target);
+    var userAnswer = event.target.innerText;
+    if (userAnswer === trivia[questionIndex].answer){
+        alert("Correct");
+        playerScore++
+    }else {
+        alert("Wrong!")
+    }
+    questionIndex++;
+    
+    if (questionIndex < trivia.length) {
+        displayQuestions();
+
+    }else {
+        alert("End Game")
+    }
+}
+play.addEventListener("click", startGame)
+
 
 
 function startGame()  {
     play.style.display = "none";
+
+   displayQuestions()
+
     
 
 
