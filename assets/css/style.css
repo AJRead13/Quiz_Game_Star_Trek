@@ -32,3 +32,8 @@ main    {
     max-width: 33%;
     justify-content: center;
 }
+#questions  {
+    font-size: 24px;
+    font-weight: bold;
+    color: slategray;
+}
