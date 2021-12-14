@@ -5,7 +5,7 @@ var alerts = document.querySelector("#passFail");
 var userScore
 var timeEl = document.querySelector("#scores");
 var play = document.querySelector("#play")
-
+var highScores = []
 var userGuess = document.querySelector(".answers")
 
 
@@ -46,7 +46,6 @@ var trivia = [
         answer: "Leonard Nemoy",
     }
 ];
-console.log(trivia[1].question);
 
 function displayQuestions () {
     var question = trivia[questionIndex];
@@ -55,8 +54,6 @@ function displayQuestions () {
     btn2.textContent = question.choices[1];
     btn3.textContent = question.choices[2];
     btn4.textContent = question.choices[3];
-
-
 }
 btn1.addEventListener("click", checkAnswer);
 btn2.addEventListener("click", checkAnswer);
@@ -71,8 +68,7 @@ function checkAnswer(event)  {
         playerScore++
     }else {
         alerts.textContent = "Wrong!";
-        countdown-5;
-
+        secondsLeft-10;
     }
     questionIndex++;
     
@@ -80,7 +76,8 @@ function checkAnswer(event)  {
         displayQuestions();
 
     }else {
-        alerts.textContent = "IT'S GAME OVER, MAN."
+        alerts.textContent = "IT'S GAME OVER, MAN.";
+        
     }
 }
 play.addEventListener("click", startGame)
@@ -91,19 +88,17 @@ function startGame()  {
     play.style.display = "none";
 
    displayQuestions();
-   //setTime();
+   setTime();
 
 }
-var countdown = 60
+var secondsLeft = 60
 
 function setTime() {
-    var countdown = setInterval(function() {
+    var timerInterval = setInterval(function() {
       secondsLeft--;
-      timeEl.textContent = "Your score " + secondsLeft;
+      timeEl.textContent = "Your score: " + secondsLeft;
       if(secondsLeft === 0) {
-        clearInterval(countdown);
+        clearInterval(timerInterval);
       }
     }, 1000);
   }
-
-console.log(timeEl.textContent);
