@@ -6,6 +6,7 @@ var userScore
 var timeEl = document.querySelector("#scores");
 var play = document.querySelector("#play");
 var scoreCard = document.querySelector("#playerScore");
+var gamer = document.querySelector("#userName")
 var player = document.querySelector("#player");
 var score = document.querySelector("#score");
 var userGuess = document.querySelector(".answers");
@@ -80,7 +81,8 @@ function checkAnswer(event) {
     else {
         gameOver.textContent = "IT'S GAME OVER, MAN.";
         clearInterval(timerInterval);
-        var userInitials = prompt("Please Enter your Initials.")
+        var userInitials = prompt("Please Enter your Initials.");
+        //gamer.push(userInitials)
     } return userInitials, secondsLeft;
 
 
@@ -96,34 +98,51 @@ playAgain.style.display = "none";
 
 function startGame() {
     play.style.display = "none";
-
     displayQuestions();
     setTime();
 
 }
+
+var timerInterval
+var userInitials
+
 var secondsLeft = 60
 function setTime() {
-    var timerInterval = setInterval(function () {
+    timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = "Your score: " + secondsLeft;
         if (secondsLeft <= 0) {
             clearInterval(timerInterval);
-            //alerts.textContent = "IT'S GAME OVER, MAN!"
+            alerts.textContent = "IT'S GAME OVER, MAN!";
+            scoreCard.push(secondsLeft);
+
         }
     }, 1000);
-    //highScores.push(secondsLeft);
 }
+
+// gamer.push(userInitials)
+// scoreCard.push(secondsLeft)
+
 
 playAgain.addEventListener("click", startGame)
 
-// var highscore = localStorage.getItem("initials");
-// function addScore() {
-// if (highscore !== null) {
-//     if (score > highscore) {
-//         localStorage.setItem("initials", score);
-//     }
-// }
-// else {
-//     localStorage.setItem("initials", score);
-// }
-// }
+function renderLastPlayer(){
+    var playerId = localStorage.getItem("userInitials");
+    var thatScore = localStorage.getItem("score")
+
+    if (!playerId|| !thatScore) {
+        return;
+    }
+}
+
+var highscore = localStorage.getItem("userInitials");
+function addScore() {
+    if (highscore !== null) {
+        if (score > highscore) {
+            localStorage.setItem("userInitials", score);
+        }
+    }
+    else {
+        localStorage.setItem("userInitials", score);
+    }
+}
