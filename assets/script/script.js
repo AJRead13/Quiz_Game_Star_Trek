@@ -5,9 +5,11 @@ var alerts = document.querySelector("#passFail");
 var userScore
 var timeEl = document.querySelector("#scores");
 var play = document.querySelector("#play")
-var highScores = []
-var userGuess = document.querySelector(".answers")
 
+var userGuess = document.querySelector(".answers")
+var gameOver = document.querySelector("#gameOver")
+
+var playAgain = document.querySelector("#playAgain")
 
 var questionText = document.querySelector("#question");
 var btn1 = document.querySelector("#btn1");
@@ -47,7 +49,7 @@ var trivia = [
     }
 ];
 
-function displayQuestions () {
+function displayQuestions() {
     var question = trivia[questionIndex];
     questionText.textContent = question.question;
     btn1.textContent = question.choices[0];
@@ -59,46 +61,63 @@ btn1.addEventListener("click", checkAnswer);
 btn2.addEventListener("click", checkAnswer);
 btn3.addEventListener("click", checkAnswer);
 btn4.addEventListener("click", checkAnswer);
-
-function checkAnswer(event)  {
+//
+function checkAnswer(event) {
     console.log(event.target);
     var userAnswer = event.target.innerText;
-    if (userAnswer === trivia[questionIndex].answer){
+    if (userAnswer === trivia[questionIndex].answer) {
         alerts.textContent = "Correct!"
-        playerScore++
-    }else {
+    } else {
         alerts.textContent = "Wrong!";
-        secondsLeft-10;
+        secondsLeft - 10;
     }
     questionIndex++;
-    
+
     if (questionIndex < trivia.length) {
         displayQuestions();
+    }
 
-    }else {
-        alerts.textContent = "IT'S GAME OVER, MAN.";
-        
+    else {
+        gameOver.textContent = "IT'S GAME OVER, MAN.";
+        clearInterval(timerInterval);
     }
 }
 play.addEventListener("click", startGame)
 
+playAgain.style.display = "none";
 
-
-function startGame()  {
+function startGame() {
     play.style.display = "none";
 
-   displayQuestions();
-   setTime();
+    displayQuestions();
+    setTime();
 
 }
 var secondsLeft = 60
-
 function setTime() {
-    var timerInterval = setInterval(function() {
-      secondsLeft--;
-      timeEl.textContent = "Your score: " + secondsLeft;
-      if(secondsLeft === 0) {
-        clearInterval(timerInterval);
-      }
+    var timerInterval = setInterval(function () {
+        secondsLeft--;
+        timeEl.textContent = "Your score: " + secondsLeft;
+        if (secondsLeft <= 0) {
+            clearInterval(timerInterval);
+            //alerts.textContent = "IT'S GAME OVER, MAN!"
+        }
     }, 1000);
-  }
+    highScores.push(secondsLeft);
+}
+
+playAgain.addEventListener("click", startGame)
+
+
+var score = 0;
+var highscore = localStorage.getItem("highscore");
+function addScore() {
+if (highscore !== null) {
+    if (score > highscore) {
+        localStorage.setItem("highscore", score);
+    }
+}
+else {
+    localStorage.setItem("highscore", score);
+}
+}

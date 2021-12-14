@@ -36,6 +36,19 @@ main    {
     box-shadow: 10px 5px 5px black;
     cursor: pointer;
 }
+#playAgain {
+    text-align: center;
+    border-color: slategray;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 5px;
+    max-width: 33%;
+    justify-content: center;
+}
+#playAgain:hover {
+    box-shadow: 10px 5px 5px black;
+    cursor: pointer;
+}
 #questions  {
     font-size: 24px;
     font-weight: bold;

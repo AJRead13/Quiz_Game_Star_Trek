@@ -1,9 +1,9 @@
 # Quiz_Game_Star_Trek
 ## Description
-- The scope of this assignment was to build a random password generator using Javascript that satifies criteria that the user can specify.
-- The result of this project demonstrates my grasp of how to leverage Javascript in order to create an interactive program that is easy to use and repeatable.
-- Some of the issues that I ran into during this project were the use of proper syntax to not only call functions for their use, but to establish those functions in the first place.  But after a lot of time and research, I have managed to create a working final product.  
-- This project has taught me a lot about Javascript's ability to handle certain points of "data", such as arrays, strings, numbers, booleans etc.  I made use of many of these features in my project.
+- The purpose of this assignment was to build a quiz through the use of Javascript.
+- The result of this project shows how Javascript can be used to alter the html dynamically to display new items.
+- Issues I ran into while working on this project were getting my timer function and my game function to call and stop eachother correctly.  
+- I have learned through working on this project how to append
 ## Table of Contents
 
 - [Installation](#installation) -- No install necessary
