@@ -81,8 +81,10 @@ function checkAnswer(event) {
     else {
         gameOver.textContent = "IT'S GAME OVER, MAN.";
         clearInterval(timerInterval);
-        var userInitials = prompt("Please Enter your Initials.");
-        //gamer.push(userInitials)
+        userInitials = prompt("Please Enter Your Initials.");
+        gamer.textContent = userInitials;
+        scoreCard.textContent = secondsLeft;      
+        
     } return userInitials, secondsLeft;
 
 
@@ -100,9 +102,7 @@ function startGame() {
     play.style.display = "none";
     displayQuestions();
     setTime();
-
 }
-
 var timerInterval
 var userInitials
 
@@ -114,7 +114,7 @@ function setTime() {
         if (secondsLeft <= 0) {
             clearInterval(timerInterval);
             alerts.textContent = "IT'S GAME OVER, MAN!";
-            scoreCard.push(secondsLeft);
+            
 
         }
     }, 1000);
@@ -126,23 +126,26 @@ function setTime() {
 
 playAgain.addEventListener("click", startGame)
 
-function renderLastPlayer(){
+function renderLastPlayer() {
     var playerId = localStorage.getItem("userInitials");
     var thatScore = localStorage.getItem("score")
 
-    if (!playerId|| !thatScore) {
+    if (!playerId || !thatScore) {
         return;
     }
 }
-
-var highscore = localStorage.getItem("userInitials");
-function addScore() {
-    if (highscore !== null) {
-        if (score > highscore) {
-            localStorage.setItem("userInitials", score);
-        }
-    }
-    else {
-        localStorage.setItem("userInitials", score);
-    }
+var playerScore = [];
+function setScore() {
+    playerScore[0] = secondsLeft;
+    localStorage.setItem("playerScore", JSON.stringify(secondsLeft));
+    JSON.parse(localStorage.getItem(playerScore));
 }
+console.log(playerScore)
+
+// var users = [];
+// function setPlayer() {
+//     users[0] = prompt("Please enter your initials");
+//     localStorage.setItem("users", JSON.stringify(userInitials));
+//     JSON.parse(localStorage.getItem("users"));
+// }
+// console.log(users);
