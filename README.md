@@ -3,7 +3,7 @@
 - The purpose of this assignment was to build a quiz through the use of Javascript.
 - The result of this project shows how Javascript can be used to alter the html dynamically to display new items.
 - Issues I ran into while working on this project were getting my timer function and my game function to call and stop eachother correctly.  
-- I have learned through working on this project how to use event listeners to call functions on click.  I have also learned how to write things to, and pull things from local storage.
+- I have learned through working on this project how to use event listeners to call functions on click.  I have also learned how to write things to local storage.  I've learned how to create elements that appear/disappear from the page through JS.
 ## Table of Contents
 
 - [Installation](#installation) -- No install necessary
@@ -13,10 +13,12 @@
 ## Installation
 No install required
 ## Usage
-Open in browser. 
+Open in browser.  https://ajread13.github.io/Quiz_Game_Star_Trek/
 ## Screenshot
-![screenshot start]() 
-![screenshot question]()
+![screenshot start](assets/images/startingScreen.png) 
+![screenshot question](assets/images/midQuestion.png)
+![screenshot initials](assets/images/initials.png)
+![screenshot score](assets/images/savedScore.png)
 ## Credits
 N/A
 ## License
