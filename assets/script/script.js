@@ -101,27 +101,13 @@ function checkAnswer(event) {
         btn2.style.display = "none";
         btn3.style.display = "none";
         btn4.style.display = "none";
-        //playAgain.style.display = "block";
+       
 
     } return userInitials, secondsLeft;
 }
 
 play.addEventListener("click", startGame)
-//playAgain.addEventListener("click", replayGame)
 
-// function replayGame() {
-//     clearInterval(timerInterval);
-//     questionIndex = 0;
-
-// }
-
-// function replay() {
-//     play.style.display = "none";
-//     questionIndex = 0;
-//     secondsLeft = 60;
-//     startGame();
-
-// }
 
 playAgain.style.display = "none";
 
