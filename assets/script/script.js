@@ -1,8 +1,7 @@
 
 var quizBody = document.querySelector("#questions");
-var quiz
+var displayedScores = document.querySelector(".displayedScores");
 var alerts = document.querySelector("#passFail");
-var userScore
 var timeEl = document.querySelector("#scores");
 var play = document.querySelector("#play");
 var scoreCard = document.querySelector("#playerScore");
@@ -17,6 +16,8 @@ var btn1 = document.querySelector("#btn1");
 var btn2 = document.querySelector("#btn2");
 var btn3 = document.querySelector("#btn3");
 var btn4 = document.querySelector("#btn4");
+var gamerName = document.querySelector("#gamerName");
+var gamerScore = document.querySelector("#gamerScore");
 
 var questionIndex = 0
 var playerScore = 0
@@ -49,6 +50,18 @@ var trivia = [
         answer: "Leonard Nemoy",
     }
 ];
+
+function renderHighScores() {
+    var userName = localStorage.getItem("userinitials");
+    var theirScore = localStorage.getItem("secondsLeft");
+    if (!userName || !theirScore){
+        return;
+    }
+    gamerName.textContent = userInitials;
+    gamerScore.textContent = secondsLeft;
+
+
+}
 
 function displayQuestions() {
     var question = trivia[questionIndex];
@@ -83,18 +96,27 @@ function checkAnswer(event) {
         clearInterval(timerInterval);
         userInitials = prompt("Please Enter Your Initials.");
         gamer.textContent = userInitials;
-        scoreCard.textContent = secondsLeft;      
-        
+        scoreCard.textContent = secondsLeft;
+        localStorage.setItem(userInitials, secondsLeft);
+        questionText.style.display = "none";
+        btn1.style.display = "none";
+        btn2.style.display = "none";
+        btn3.style.display = "none";
+        btn4.style.display = "none";
+        playAgain.style.display = "block";
+
     } return userInitials, secondsLeft;
-
-
 }
+
 play.addEventListener("click", startGame)
 
-function replay() {
-    play.style.display = "none";
+// function replay() {
+//     play.style.display = "none";
+//     questionIndex = 0;
+//     secondsLeft = 60;
+//     startGame();
 
-}
+// }
 
 playAgain.style.display = "none";
 
@@ -114,15 +136,15 @@ function setTime() {
         if (secondsLeft <= 0) {
             clearInterval(timerInterval);
             alerts.textContent = "IT'S GAME OVER, MAN!";
-            
+
 
         }
     }, 1000);
 }
 
-// gamer.push(userInitials)
-// scoreCard.push(secondsLeft)
+function highScoreList() {
 
+}
 
 playAgain.addEventListener("click", startGame)
 
@@ -135,17 +157,3 @@ function renderLastPlayer() {
     }
 }
 var playerScore = [];
-function setScore() {
-    playerScore[0] = secondsLeft;
-    localStorage.setItem("playerScore", JSON.stringify(secondsLeft));
-    JSON.parse(localStorage.getItem(playerScore));
-}
-console.log(playerScore)
-
-// var users = [];
-// function setPlayer() {
-//     users[0] = prompt("Please enter your initials");
-//     localStorage.setItem("users", JSON.stringify(userInitials));
-//     JSON.parse(localStorage.getItem("users"));
-// }
-// console.log(users);

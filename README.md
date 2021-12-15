@@ -3,7 +3,7 @@
 - The purpose of this assignment was to build a quiz through the use of Javascript.
 - The result of this project shows how Javascript can be used to alter the html dynamically to display new items.
 - Issues I ran into while working on this project were getting my timer function and my game function to call and stop eachother correctly.  
-- I have learned through working on this project how to append
+- I have learned through working on this project how to use event listeners to call functions on click.  I have also learned how to write things to, and pull things from local storage.
 ## Table of Contents
 
 - [Installation](#installation) -- No install necessary
